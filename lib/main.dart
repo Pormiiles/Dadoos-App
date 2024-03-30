@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -15,33 +17,38 @@ void main() {
   );
 }
 
-class Dadoos2 extends StatefulWidget {
-  const Dadoos2({Key? key}) : super(key: key);
+class Dadoos extends StatefulWidget {
+  const Dadoos({Key? key}) : super(key: key);
 
   @override
-  State<Dadoos2> createState() => _Dadoos2State();
+  State<Dadoos> createState() => _DadoosState();
 }
 
-class _Dadoos2State extends State<Dadoos2> {
-  int numDadoEsquerda = 4;
+class _DadoosState extends State<Dadoos> {
+  int numDadoEsquerda = 1;
+  int numDadoDireita = 1;
 
   @override
   Widget build(BuildContext context) {
-
     return Center(
       child: Row(children: [
         Expanded(
           child: 
             TextButton(onPressed: () { 
+              setState(() {
+                numDadoEsquerda = Random().nextInt(6) + 1;
+              });
              },
             child: Image.asset('imagens/dado$numDadoEsquerda.png')),
         ),
         Expanded(
           child: 
             TextButton(onPressed: () { 
-              print('Botão direito pressionado!');
+              setState(() {
+                numDadoDireita = Random().nextInt(6) + 1;
+              });
              },
-            child: Image.asset('imagens/dado2.png',)),
+            child: Image.asset('imagens/dado$numDadoDireita.png',)),
         )],
       ),
     );
